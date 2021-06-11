@@ -178,10 +178,14 @@
     } else {
       if (dia.length === 2) {
         dia = dia;
+        dia = parseFloat(dia);
+        dia = dia - 1;
       }
-      dia = parseFloat(dia);
-      dia = dia - 1;
-      dia = "0" + dia.toString();
+      else {
+        dia = parseFloat(dia);
+        dia = dia - 1;
+        dia = "0" + dia.toString();
+      }
     }
     return ano + "" + mes + "" + dia;
   }
