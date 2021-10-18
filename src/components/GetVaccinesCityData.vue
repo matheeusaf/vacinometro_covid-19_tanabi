@@ -97,6 +97,7 @@
       var data = new Date();
       var myHeaders = new Headers();
       myHeaders.append("origin", "same-origin");
+      myHeaders.append("x-cors-grida-api-key", "89566613-cb0b-423b-a6a2-46695353a8c6");
       var requestOptions = {
         method: 'GET',
         headers: myHeaders,
