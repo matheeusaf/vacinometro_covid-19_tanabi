@@ -200,33 +200,6 @@
           this.errorMessage = error;
           console.error("There was an error!", error);
         });
-
-      // GET request using fetch with error handling
-      fetch("https://cors.bridged.cc/https://www.saopaulo.sp.gov.br/wp-content/uploads/" + data.getFullYear() + "/" +
-          (data.getMonth() + 1).toString().padStart(2, '0') + "/" + dataAtualFormatada() +
-          "_painel_distribuicao_doses.csv", requestOptions)
-        .then(async response => {
-          const data = await response.text();
-
-          const citydatadistjson = CSVJSON.csv2json(data);
-          for (var i = 0; i < citydatadistjson.length; i++) {
-            if (citydatadistjson[i].Municipio === 'TANABI') {
-              this.dosesDist = citydatadistjson[i]['Qtd-Doses-Distribuidas'];
-              document.querySelector("#dosesDistLoader").style.display = "none";
-            }
-          }
-          // setTimeout to wait dosesTotais be loaded
-          setTimeout(() => {
-            this.porcDosesAplicadas = (this.dosesTotais / this.dosesDist) * 100;
-            this.porcDosesAplicadas = parseFloat(this.porcDosesAplicadas.toFixed(2));
-            document.querySelector("#pdaloader").style.display = "none";
-            localStorage.setItem("pdaT", this.porcDosesAplicadas);
-          }, 1000);
-        })
-        .catch(error => {
-          this.errorMessage = error;
-          console.error("There was an error!", error);
-        });
     }
   };
 
